@@ -1,6 +1,8 @@
 import java.io.BufferedReader
 import java.io.StringReader
 import java.util.*
+import strings.*
+
 
 fun max(a: Int, b: Int): Int = if (a > b) a else b
 
@@ -105,22 +107,22 @@ fun main(args: Array<String>) {
         if (number in 0..100) {
             println("Number $number is a percentage")
             number
-        }
-        else
+        } else
             throw IllegalArgumentException(
-                "A percentage value must be between 0 and 100: $number")
+                "A percentage value must be between 0 and 100: $number"
+            )
 
     fun readNumber(reader: BufferedReader): Int? {
         try {
             val line = reader.readLine()
             return Integer.parseInt(line)
-        }
-        catch (e: NumberFormatException) {
+        } catch (e: NumberFormatException) {
             return null
-        }
-        finally {
+        } finally {
             reader.close()
-        }}
+        }
+    }
+
     val reader = BufferedReader(StringReader("239"))
     println(readNumber(reader))
 
@@ -132,7 +134,33 @@ fun main(args: Array<String>) {
         }
         println(number)
     }
+
     val reader2 = BufferedReader(StringReader("not a number"))
     readNumber2(reader2)
+
+    // 3.1 Creating collections in Kotlin
+    val set = hashSetOf(1, 7, 53)
+    val list2 = arrayListOf(1, 7, 53)
+    val map = hashMapOf(1 to "one", 7 to "7", 53 to "fifty-three")
+
+    // 3.2 Making functions easier to call
+    val list3 = listOf(1, 2, 3)
+    //println(joinToString(list3, "; ", "(", ")"))
+    println("Kotlin".lastChar())
+    println(list3.joinToString(": "))
+
+    // 3.5 Working with strings and regular expressions
+    println("12.345-6.A".split("\\.|-".toRegex()))
+    println("12.345-6.A".split(".", "-"))
+
+    // Using triple quotes you don't need to escape characters
+    val kotlinLogo = """| //
+.|//
+.|/ \"""
+    println(kotlinLogo.trimMargin("."))
+
+    // 3.6 Making your code tidy: local functions and extensions
+    val user: User = User(1, "kalle", "Vantaa")
+    saveUser(user)
 }
 
